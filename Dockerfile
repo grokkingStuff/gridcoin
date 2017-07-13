@@ -6,7 +6,8 @@ MAINTAINER Vishakh Kumar <vishakhpradeepkumar@gmail.com>
 
 
 
-sudo add-apt-repository ppa:gridcoin/gridcoin-stable
-sudo apt-get update
-sudo apt-get install gridcoinresearchd
-gridcoinresearchd
+RUN sudo add-apt-repository ppa:gridcoin/gridcoin-stable \
+    && sudo apt-get update \
+    && sudo apt-get install gridcoinresearchd
+
+CMD [gridcoinresearchd]
