@@ -51,20 +51,33 @@ RUN cd ~ \
 	&& mkdir ~/.GridcoinResearch \
 	&& cd ~/.GridcoinResearch 
 
+# add information to gridcoinresearch.conf
 RUN echo 'addnode=node.gridcoin.us\nserver=1  \n\                              
 rpcuser=grokkingStuff           \n\    
 rpcpassword=2YoXwdv9bkxM3kcS9S4KK3C9ngopEzM1DVe9PEuaxVPc      \n'\
 >> ~/.GridcoinResearch/gridcoinresearch.conf 
 
 
-#RUN echo 'addnode=node.gridcoin.us\nserver=1                       
-#daemon=1                       
-#rpcport=9332                   
-#rpcallowip=127.0.0.1            
-#rpcuser=grokkingStuff               
-#rpcpassword=2YoXwdv9bkxM3kcS9S4KK3C9ngopEzM1DVe9PEuaxVPc      
-#rpcallowip=external IP         
-##rpcssl=1'\
-#>> gridcoinresearch.conf 
-
 CMD ["gridcoinresearchd"]
+
+# installing dependencies for Qt5 GUI for Gridcoin
+RUN apt-get -y install qt5-default qt5-qmake qtbase5-dev-tools qttools5-dev-tools \
+    build-essential libboost-dev libboost-system-dev \
+    libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
+    libssl-dev libdb++-dev libminiupnpc-dev
+
+RUN cd ~/Gridcoin-Research \
+    && qmake \
+    && make
+
+
+
+
+
+
+
+
+
+
+
+
