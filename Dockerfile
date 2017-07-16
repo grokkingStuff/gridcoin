@@ -20,6 +20,7 @@ ARG RPCPASSWORD=2YoXwdv9bkxM3kcS9S4KK3C9ngopEzM1DVe9PEuaxVPc
 
 
 
+
 # Installing Normal Dependencies. 
 RUN apt-get -y install ntp \
                        git \
@@ -40,8 +41,7 @@ RUN apt-get -y install ntp \
                        libboost-serialization-dev \
                        libboost-system-dev \
                        libboost-thread-dev \
-                       wget
-
+                       wget 
 
 
 
@@ -73,10 +73,8 @@ RUN cd ~ \
 
 
 
-
-
 # add information to gridcoinresearch.conf.
-RUN echo 'addnode=node.gridcoin.us\nserver=1                  \n\                              
+RUN echo 'addnode=node.gridcoin.us\nserver=1                  \n\
 rpcuser=$RPCUSER                                              \n\    
 rpcpassword=$RPCPASSWORD                                      \n\
 email=$EMAIL                                                  \n\
@@ -116,7 +114,15 @@ RUN cd ~/Gridcoin-Research \
 # Make GUI an actual executable
 RUN cd ~/Gridcoin-Research \
 && strip gridcoinresearch \
-&& install -m 755 gridcoinresearch /usr/bin/gridcoinresearch
+&& install -m 755 gridcoinresearch /usr/bin/gridcoinresearch 
+
+
+RUN cd root/.GridcoinResearch/  \
+ && wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/snapshot.zip -O blockchain.zip 
+
+RUN cd root/.GridcoinResearch/  \
+ && apt-get -y install unzip \
+ && unzip blockchain.zip
 
  
 ENTRYPOINT [ "gridcoinresearch" ]
