@@ -67,7 +67,7 @@ RUN apt-get -y install qt5-default qt5-qmake qtbase5-dev-tools qttools5-dev-tool
     libssl-dev libdb++-dev libminiupnpc-dev
 
 RUN cd ~/Gridcoin-Research \
-    && qmake \
+    && qmake "USE_UPNP=1" "USE_QRCODE=1" \
     && make
 
 
