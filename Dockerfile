@@ -1,4 +1,4 @@
-# Instructions casually stolen from http://wiki.gridcoin.us/Linux_guide
+# Instructions and other stuff casually stolen from https://github.com/gridcoin/Gridcoin-Research.
 # Specifically, the build instructions for the gridcoin research client for Ubuntu.
 
 FROM ubuntu
@@ -7,7 +7,20 @@ MAINTAINER Vishakh Kumar <vishakhpradeepkumar@gmail.com>
 #RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get -y update 
 
-# Installing Dependencies 
+
+
+
+
+
+ARG BOINC_DIR=/boinc_dir
+ARG EMAIL=vishakhpradeepkumar@gmail.com
+
+ARG RPCUSER=grokkingStuff                                          
+ARG RPCPASSWORD=2YoXwdv9bkxM3kcS9S4KK3C9ngopEzM1DVe9PEuaxVPc 
+
+
+
+# Installing Normal Dependencies. 
 RUN apt-get -y install ntp \
                        git \
                        build-essential \
@@ -29,7 +42,11 @@ RUN apt-get -y install ntp \
                        libboost-thread-dev \
                        wget
 
-# Dependencies
+
+
+
+
+# Dependencies for Gridcoin Daemon.
 RUN apt-get -y update                \
     && apt-get -y install ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev \
     && apt-get -y install qt-sdk qt4-default \
@@ -37,7 +54,10 @@ RUN apt-get -y update                \
     && apt-get -y install libzip-dev
     
 
-# Build Gridcoin Daemon
+
+
+
+# Build Gridcoin Daemon.
 # We'll be cloning from the github repo and following directions from there.
 # Just to be explicit, the directions were found at Gridcoin-Research/doc/build-unix.txt
 RUN cd ~ \
@@ -51,32 +71,54 @@ RUN cd ~ \
 	&& mkdir ~/.GridcoinResearch \
 	&& cd ~/.GridcoinResearch 
 
-# add information to gridcoinresearch.conf
-RUN echo 'addnode=node.gridcoin.us\nserver=1  \n\                              
-rpcuser=grokkingStuff           \n\    
-rpcpassword=2YoXwdv9bkxM3kcS9S4KK3C9ngopEzM1DVe9PEuaxVPc      \n'\
+
+
+
+
+# add information to gridcoinresearch.conf.
+RUN echo 'addnode=node.gridcoin.us\nserver=1                  \n\                              
+rpcuser=$RPCUSER                                              \n\    
+rpcpassword=$RPCPASSWORD                                      \n\
+email=$EMAIL                                                  \n\
+boincdatadir=$BOINC_DIR                                       ' \
 >> ~/.GridcoinResearch/gridcoinresearch.conf 
 
 
+
+
+
+# Run gridcoin daemon
 CMD ["gridcoinresearchd"]
 
-# installing dependencies for Qt5 GUI for Gridcoin
+
+
+
+
+# Dependencies for Qt5 GUI for Gridcoin.
 RUN apt-get -y install qt5-default qt5-qmake qtbase5-dev-tools qttools5-dev-tools \
     build-essential libboost-dev libboost-system-dev \
     libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
     libssl-dev libdb++-dev libminiupnpc-dev
 
+
+
+
+
+# Build Qt5 GUI.
 RUN cd ~/Gridcoin-Research \
     && qmake "USE_UPNP=1" "USE_QRCODE=1" \
     && make
 
 
+CMD ["gridcoinresearch"]    
 
 
 
 
 
 
+
+# -v /Users/bob/myapp/src:/src
 
 
 
