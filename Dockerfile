@@ -12,7 +12,7 @@ RUN apt-get -y update
 
 
 
-ARG BOINC_DIR=/boinc_dir
+ARG BOINC_DIR=/root/boinc_dir
 ARG EMAIL=vishakhpradeepkumar@gmail.com
 
 ARG RPCUSER=grokkingStuff                                          
@@ -81,8 +81,11 @@ rpcuser=$RPCUSER                                              \n\
 rpcpassword=$RPCPASSWORD                                      \n\
 email=$EMAIL                                                  \n\
 boincdatadir=$BOINC_DIR                                       ' \
->> ~/.GridcoinResearch/gridcoinresearch.conf 
-
+>> ~/.GridcoinResearch/gridcoinresearch.conf                    \
+    $$ cd ~                                                     \
+    && mkdir $BOINC_DIR                                         \
+    && cd $BOINC_DIR                                            \
+    && pwd
 
 
 
@@ -110,7 +113,13 @@ RUN cd ~/Gridcoin-Research \
     && make
 
 
-CMD ["gridcoinresearch"]    
+# Make GUI an actual executable
+RUN cd ~/Gridcoin-Research \
+&& strip gridcoinresearch \
+&& install -m 755 gridcoinresearch /usr/bin/gridcoinresearch
+
+ 
+ENTRYPOINT [ "gridcoinresearch" ]
 
 
 
