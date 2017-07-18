@@ -5,6 +5,32 @@ This is a docker image that runs a gridcoin wallet on your machine.
 
 
 
+
+# How to run this image?
+
+Run this in your terminal.
+docker run -d -e DISPLAY=$DISPLAY_MAC \
+           -v "/Library/Application Support/BOINC Data":/root/boinc_dir \
+           -v "/Users/vikumar/Projects/Gridcoin":"/root/.GridcoinResearch" \
+           -it gridcoin
+                
+
+Configuration stuff and downloaded blocks reside here in the docker.
+/root/.GridcoinResearch
+and here in the host computer
+/Users/vikumar/Projects/Gridcoin
+
+do replace your name :D
+
+
+Boinc Information stays here in the container
+/root/boinc_dir
+and here in the host computer
+/Library/Application Support/BOINC Data
+
+
+
+
 # FAQ
 
 ## Is this safe to use in a mature mining rig.
@@ -29,3 +55,26 @@ Feel free to critize this image as much as possible - or just add your own pull 
 
 # Stuff I might have to add.
 Currently
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+How do i back up my wallet?
+
+gridcoinresearchd backupwallet

@@ -124,16 +124,10 @@ RUN cd root/.GridcoinResearch/  \
  && apt-get -y install unzip \
  && unzip blockchain.zip
 
+
+RUN cd ~/.GridcoinResearch && pwd && rm blockchain.zip && ls -a && ls txleveldb/
  
 ENTRYPOINT [ "gridcoinresearch" ]
-
-
-
-
-
-
-
-# -v /Users/bob/myapp/src:/src
 
 
 
