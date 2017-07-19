@@ -116,17 +116,16 @@ RUN cd ~/Gridcoin-Research \
 && strip gridcoinresearch \
 && install -m 755 gridcoinresearch /usr/bin/gridcoinresearch 
 
-
+# Download most blocks from a source quickly, unpack the zip file and delete it.
 RUN cd root/.GridcoinResearch/  \
- && wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/snapshot.zip -O blockchain.zip 
-
-RUN cd root/.GridcoinResearch/  \
+ && wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/snapshot.zip -O blockchain.zip \
  && apt-get -y install unzip \
- && unzip blockchain.zip
+ && unzip blockchain.zip \
+ && rm blockchain.zip
 
 
-RUN cd ~/.GridcoinResearch && pwd && rm blockchain.zip && ls -a && ls txleveldb/
- 
+# Entrypoint for the host to access the application through X server.
+# This allows the GUI to appear on the host, in simpler words.
 ENTRYPOINT [ "gridcoinresearch" ]
 
 
