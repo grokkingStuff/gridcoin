@@ -29,7 +29,7 @@ docker run -ti --rm -v gary:/root/.GridcoinResearch \
            -e DISPLAY=$DISPLAY_MAC \
            -v "/Library/Application Support/BOINC Data":/root/boinc_dir \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
-           --autorestart ON_FAILURE \
+           --restart unless-stopped \
            -it grokkingstuff/gridcoin
 ```
 
@@ -71,28 +71,3 @@ Docker Hub didn't allow me to use a capital S in my username. I'm so sorry for a
 Feel free to critize this image as much as possible - or just add your own pull request.
 
 
-# Stuff I might have to add.
-Currently
-
-
-
-
-
-
-Wallet location: /root/.GridcoinResearch/wallet.dat
-
-
-
-
-
-
-
-
-
-
-
-
-
-How do i back up my wallet?
-
-gridcoinresearchd backupwallet
