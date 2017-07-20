@@ -3,6 +3,7 @@
  
 ![Gridcoin Logo](Docs/GridcoinLogo.png)
 
+
 This is a docker image that runs a gridcoin wallet on your machine. I created it because I had a bit of difficulty compiling the gridcoin client on my computer and decided that I wasn't going to do this for all the computers I have - enter Docker and the ease of use with downloading an image that I don't really install.
 
 I hope you find this image useful and if you have any recomendations, submit a pull request/issue or send me an email at vishakhpradeepkumar@gmail.com - I'd love to make this image better.
