@@ -10,6 +10,7 @@ This is a docker image that runs a gridcoin wallet on your machine. I created it
 
 I hope you find this image useful and if you have any recomendations, submit a pull request/issue or send me an email at vishakhpradeepkumar@gmail.com - I'd love to make this image better.
 
+This docker image is located at dockerhub at https://hub.docker.com/r/grokkingstuff/gridcoin/.
 
 # How to run this image?
 
@@ -26,11 +27,11 @@ docker volume create --name gridcoin_gary \
 ## Create an instance of the gridcoin wallet via this command:
 
 ```bash
-docker run -ti --rm -v gary:/root/.GridcoinResearch \
+docker run -ti --rm -v gridcoin_gary:/root/.GridcoinResearch \
            -e DISPLAY=$DISPLAY_MAC \
            -v "/Library/Application Support/BOINC Data":/root/boinc_dir \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
-           --autorestart ON_FAILURE \
+           --restart unless-stopped \
            -it grokkingstuff/gridcoin
 ```
 
@@ -51,7 +52,26 @@ In any case, you won't lose your data. I know docker images are ephemeral and th
 
 ## I'd like to backup my wallet.
 
-While the data volume is safe, I do appreciate the concern that a wallet might be corrupted or lost. 
+While the data volume is safe, I do appreciate the concern that a wallet might be corrupted or lost. Heck, I'd be angry if I lost my gridcoins. Which is why I like to backup my wallet on a regular basis. Here is the command to backup the data volume your data is stored in.
+
+'''bash
+docker export --output wallet_backup.tar gridcoin_gary
+'''
+
+When you want to import your backup into a data volume again, use this command
+
+'''bash
+docker import /wallet_backup.tar
+'''
+
+What if you want to look at the contents of the data volume?
+
+'''bash
+docker run -v gridcoin_gary:/mnt/named busybox ls -lg /mnt/named
+'''
+
+What if you'd like to copy the contents of the file to your host computer? Use the ''' docker cp ''' command to copy files.
+
 
 ## I try to download blocks and the thing stops working! Why?
 
@@ -72,28 +92,3 @@ Docker Hub didn't allow me to use a capital S in my username. I'm so sorry for a
 Feel free to critize this image as much as possible - or just add your own pull request.
 
 
-# Stuff I might have to add.
-Currently
-
-
-
-
-
-
-Wallet location: /root/.GridcoinResearch/wallet.dat
-
-
-
-
-
-
-
-
-
-
-
-
-
-How do i back up my wallet?
-
-gridcoinresearchd backupwallet
