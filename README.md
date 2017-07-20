@@ -8,6 +8,7 @@ This is a docker image that runs a gridcoin wallet on your machine. I created it
 
 I hope you find this image useful and if you have any recomendations, submit a pull request/issue or send me an email at vishakhpradeepkumar@gmail.com - I'd love to make this image better.
 
+This docker image is located at dockerhub at https://hub.docker.com/r/grokkingstuff/gridcoin/.
 
 # How to run this image?
 
