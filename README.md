@@ -25,7 +25,7 @@ docker volume create --name gridcoin_gary \
 ## Create an instance of the gridcoin wallet via this command:
 
 ```bash
-docker run -ti --rm -v gary:/root/.GridcoinResearch \
+docker run -ti --rm -v gridcoin_gary:/root/.GridcoinResearch \
            -e DISPLAY=$DISPLAY_MAC \
            -v "/Library/Application Support/BOINC Data":/root/boinc_dir \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -50,7 +50,18 @@ In any case, you won't lose your data. I know docker images are ephemeral and th
 
 ## I'd like to backup my wallet.
 
-While the data volume is safe, I do appreciate the concern that a wallet might be corrupted or lost. 
+While the data volume is safe, I do appreciate the concern that a wallet might be corrupted or lost. Heck, I'd be angry if I lost my gridcoins. Which is why I like to backup my wallet on a regular basis. Here is the command to backup the data volume your data is stored in.
+
+'''bash
+docker export --output wallet_backup.tar gridcoin_gary
+'''
+
+When you want to import your backup into a data volume again, use this command
+
+'''bash
+docker import /wallet_backup.tar
+'''
+
 
 ## I try to download blocks and the thing stops working! Why?
 
