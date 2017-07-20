@@ -1,7 +1,9 @@
 # Gridcoin Docker Image 
 
- 
-![Gridcoin Logo](Docs/GridcoinLogo.png)
+
+<center>
+<img src="Docs/GridcoinLogo.png" width="300px" alt="Gridcoin Logo">
+</center>
 
 
 This is a docker image that runs a gridcoin wallet on your machine. I created it because I had a bit of difficulty compiling the gridcoin client on my computer and decided that I wasn't going to do this for all the computers I have - enter Docker and the ease of use with downloading an image that I don't really install.
@@ -55,7 +57,6 @@ While the data volume is safe, I do appreciate the concern that a wallet might b
 
 After the wallet downloads the blocks, the wallet restarts itself which tells docker it's stopped.
 I currently don't have a fix for that. My suggestion is to not use that option for now - at some point, I'll try to fix that.
-<<<<<<< HEAD
 
 You really shouldn't have to do that since the image comes with a snapshot of the blockchain - this image has batteries included.
 
@@ -63,15 +64,6 @@ You really shouldn't have to do that since the image comes with a snapshot of th
 
 I'd recommend looking at the way you've set up X-server. My recommendation is to use the instructions [here](https://github.com/chanezon/docker-tips/blob/master/x11/README.md). I use the proxying option myself - it's easy to do and works reliably.
 
-=======
-
-You really shouldn't have to do that since the image comes with a snapshot of the blockchain - this image has batteries included.
-
-## I got an error message that says that it can't load the graphical interface
-
-I'd recommend looking at the way you've set up X-server. My recommendation is to use the instructions [here](https://github.com/chanezon/docker-tips/blob/master/x11/README.md). I use the proxying option myself - it's easy to do and works reliably.
-
->>>>>>> dev
 ## Why on earth is the dockerhub repo under grokkingstuff while your name is grokkingStuff ? (note the capitalization of the s)
 
 Docker Hub didn't allow me to use a capital S in my username. I'm so sorry for any confusion that causes.
