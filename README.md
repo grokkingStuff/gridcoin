@@ -62,6 +62,14 @@ When you want to import your backup into a data volume again, use this command
 docker import /wallet_backup.tar
 '''
 
+What if you want to look at the contents of the data volume?
+
+'''bash
+docker run -v gridcoin_gary:/mnt/named busybox ls -lg /mnt/named
+'''
+
+What if you'd like to copy the contents of the file to your host computer? Use the ''' docker cp ''' command to copy files.
+
 
 ## I try to download blocks and the thing stops working! Why?
 
