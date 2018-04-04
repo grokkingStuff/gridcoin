@@ -1,7 +1,8 @@
 # Instructions and other stuff casually stolen from https://github.com/gridcoin/Gridcoin-Research.
 # Specifically, the build instructions for the gridcoin research client for Ubuntu.
 
-FROM ubuntu
+# FROM ubuntu
+FROM nvidia/cuda:8.0-cudnn7-runtime-ubuntu16.04
 MAINTAINER Vishakh Kumar <vishakhpradeepkumar@gmail.com>
 
 #RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list

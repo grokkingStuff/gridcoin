@@ -20,23 +20,11 @@ Run this in your terminal.
 ## Create a data volume called gridcoin_gary
 
 ```bash
-docker volume create --name gridcoin_gary \
-                     --opt device=:/path/to/dir \
+docker volume create --name my_gridcoin \
+  -o device=/home/brandon/gridcoin -o type=none -o o=bind
 ```
 
-## Create an instance of the gridcoin wallet via this command:
-
-```bash
-docker run -ti --rm -v gridcoin_gary:/root/.GridcoinResearch \
-           -e DISPLAY=$DISPLAY_MAC \
-           -v "/Library/Application Support/BOINC Data":/root/boinc_dir \
-           -v /tmp/.X11-unix:/tmp/.X11-unix \
-           --restart unless-stopped \
-           -it grokkingstuff/gridcoin
-```
-
-Unfortunately, this works only for Macs as the GUI display requires the X-server (that's on Docker, not me) - much better instructions can be found here. I'll add instructions for Linux and Windows later. You're more than welcome to add a pull request :D
-
+## Create an instance of the gridcoin wallet by executing `run.sh`.
 
 # FAQ
 
